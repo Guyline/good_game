@@ -11,7 +11,8 @@
 #
 
 class Platform < ActiveRecord::Base
-  belongs_to :producer
+  belongs_to :producer,
+    :class_name => "Company"
 
   validates :producer,
     :presence => true
