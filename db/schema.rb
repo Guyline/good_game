@@ -11,16 +11,25 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150806065949) do
+ActiveRecord::Schema.define(version: 20150806223153) do
 
-  create_table "developers", force: :cascade do |t|
-    t.integer  "predecessor_id",         limit: 4
-    t.integer  "principal_developer_id", limit: 4
-    t.string   "name",                   limit: 255
-    t.string   "city",                   limit: 255
-    t.string   "state",                  limit: 255
-    t.string   "country",                limit: 255
+  create_table "companies", force: :cascade do |t|
+    t.integer  "predecessor_id",       limit: 4
+    t.integer  "principal_company_id", limit: 4
+    t.string   "name",                 limit: 255
+    t.string   "city",                 limit: 255
+    t.string   "state",                limit: 255
+    t.string   "country",              limit: 255
     t.date     "established_on"
+    t.string   "company_type",         limit: 255
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "company_releases", force: :cascade do |t|
+    t.integer  "company_id",           limit: 4
+    t.integer  "release_id",           limit: 4
+    t.string   "company_release_type", limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -41,33 +50,11 @@ ActiveRecord::Schema.define(version: 20150806065949) do
     t.datetime "updated_at"
   end
 
-  create_table "producers", force: :cascade do |t|
-    t.string   "name",           limit: 255
-    t.string   "city",           limit: 255
-    t.string   "state",          limit: 255
-    t.string   "country",        limit: 255
-    t.datetime "established_on"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "publishers", force: :cascade do |t|
-    t.string   "name",           limit: 255
-    t.string   "city",           limit: 255
-    t.string   "state",          limit: 255
-    t.string   "country",        limit: 255
-    t.date     "established_on"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "releases", force: :cascade do |t|
-    t.integer  "game_id",      limit: 4
-    t.integer  "platform_id",  limit: 4
-    t.integer  "developer_id", limit: 4
-    t.integer  "publisher_id", limit: 4
-    t.string   "name",         limit: 255
-    t.string   "market",       limit: 255
+    t.integer  "game_id",     limit: 4
+    t.integer  "platform_id", limit: 4
+    t.string   "name",        limit: 255
+    t.string   "market",      limit: 255
     t.date     "released_on"
     t.datetime "created_at"
     t.datetime "updated_at"
