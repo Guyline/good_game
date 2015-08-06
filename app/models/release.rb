@@ -2,16 +2,14 @@
 #
 # Table name: releases
 #
-#  id           :integer          not null, primary key
-#  game_id      :integer
-#  platform_id  :integer
-#  developer_id :integer
-#  publisher_id :integer
-#  name         :string(255)
-#  market       :string(255)
-#  released_on  :date
-#  created_at   :datetime
-#  updated_at   :datetime
+#  id          :integer          not null, primary key
+#  game_id     :integer
+#  platform_id :integer
+#  name        :string(255)
+#  market      :string(255)
+#  released_on :date
+#  created_at  :datetime
+#  updated_at  :datetime
 #
 
 class Release < ActiveRecord::Base
