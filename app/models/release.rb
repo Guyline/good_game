@@ -17,8 +17,18 @@
 class Release < ActiveRecord::Base
   belongs_to      :game
   belongs_to      :platform
-  belongs_to      :developer
-  belongs_to      :publisher
+
+  has_many      :developer_company_releases,
+    :class_name => "CompanyRelease::Developer"
+  has_many      :developers,
+    :through => :developer_company_releases,
+    :source => :company
+
+  has_many      :publisher_company_releases,
+    :class_name => "CompanyRelease::Publisher"
+  has_many      :publishers,
+    :through => :publisher_company_releases,
+    :source => :company
 
   MARKETS = [
     MARKET_US = "US",
@@ -34,14 +44,11 @@ class Release < ActiveRecord::Base
 
   validates :game_id,
     :presence => true
-  validates :developer_id,
-    :presence => true
-  validates :publisher_id,
-    :presence => true
   validates :platform_id,
     :presence => true,
     :uniqueness => {
       :scope => [
+        :game_id,
         :name,
         :market
       ]
