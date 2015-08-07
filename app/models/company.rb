@@ -16,6 +16,8 @@
 #
 
 class Company < ActiveRecord::Base
+  API_PREFIX = "3010"
+
   self.inheritance_column = :company_type
 
   belongs_to    :predecessor,
@@ -60,4 +62,9 @@ class Company < ActiveRecord::Base
 
   validates :name,
     :presence => true
+
+  def api_resource_id
+    raise "No External ID" unless external_id?
+    "#{API_PREFIX}-#{external_id}"
+  end
 end
