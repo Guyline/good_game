@@ -16,10 +16,10 @@ class Game < ActiveRecord::Base
     :through => :releases
   has_many :publishers, -> { uniq },
     :through => :releases,
-    :source => :publisher
+    :source => :publishers
   has_many :developers, -> { uniq },
     :through => :releases,
-    :source => :developer
+    :source => :developers
 
   has_many :genres
 
